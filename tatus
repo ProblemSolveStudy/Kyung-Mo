@@ -1,0 +1,126 @@
+[1mdiff --git a/src/chap06/ArraysSortTester.java b/src/chap06/ArraysSortTester.java[m
+[1mindex 3227e79..ff1341a 100644[m
+[1m--- a/src/chap06/ArraysSortTester.java[m
+[1m+++ b/src/chap06/ArraysSortTester.java[m
+[36m@@ -1,2 +1,26 @@[m
+[31m-package chap06;public class ArraysSortTester {[m
+[32m+[m[32mpackage chap06;[m
+[32m+[m
+[32m+[m[32mimport java.util.Arrays;[m
+[32m+[m[32mimport java.util.Scanner;[m
+[32m+[m
+[32m+[m[32mpublic class ArraysSortTester {[m
+[32m+[m[32m    public static void main(String[] args) {[m
+[32m+[m[32m        Scanner sc = new Scanner(System.in);[m
+[32m+[m
+[32m+[m[32m        System.out.print("요솟수 :");[m
+[32m+[m[32m        int num = sc.nextInt();[m
+[32m+[m[32m        int[] x = new int[num];[m
+[32m+[m
+[32m+[m[32m        for (int i = 0; i < num; i++) {[m
+[32m+[m[32m            System.out.print("x[" + i + "] = ");[m
+[32m+[m[32m            x[i] = sc.nextInt();[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        Arrays.sort(x);[m
+[32m+[m
+[32m+[m[32m        System.out.println("오름차순으로 정렬했습니다.");[m
+[32m+[m[32m        for (int i = 0; i < x.length; i++) {[m
+[32m+[m[32m            System.out.println("x[" + i + "] = " + x[i]);[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+ }[m
+[1mdiff --git a/src/chap06/MergeArray.java b/src/chap06/MergeArray.java[m
+[1mindex a75d7e1..6926ad7 100644[m
+[1m--- a/src/chap06/MergeArray.java[m
+[1m+++ b/src/chap06/MergeArray.java[m
+[36m@@ -1,2 +1,36 @@[m
+[31m-package chap06;public class MergeArray {[m
+[32m+[m[32mpackage chap06;[m
+[32m+[m
+[32m+[m[32mimport java.util.Scanner;[m
+[32m+[m
+[32m+[m[32mpublic class MergeArray {[m
+[32m+[m
+[32m+[m[32m    static void merge(int[] a, int na, int[] b, int nb, int[] c) {[m
+[32m+[m[32m        int pa = 0;[m
+[32m+[m[32m        int pb = 0;[m
+[32m+[m[32m        int pc = 0;[m
+[32m+[m
+[32m+[m[32m        while (pa < na && pb < nb) { // pa pb 비교해서 pa가 작으면 pa값을 pc에 저장 or pb가 작으면 pb값을 pc에 저장[m
+[32m+[m[32m            c[pc++] = (a[pa] <= b[pb]) ? a[pa++] : b[pb++];[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        while (pa < na) { //[m
+[32m+[m[32m            c[pc++] = a[pa++];[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        while (pb < nb) { // 어차피 정렬된 배열이기 때문에 그냥 복붙조져버리는 것[m
+[32m+[m[32m            c[pc++] = b[pb++];[m
+[32m+[m[32m        }[m
+[32m+[m
+[32m+[m[32m        for (int i = 0; i < c.length; i++) {[m
+[32m+[m[32m            System.out.println("c[" + i + "] = " + c[i]);[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public static void main(String[] args) {[m
+[32m+[m[32m        int[] a = {2, 4, 6, 8, 11, 13};[m
+[32m+[m[32m        int[] b = {1, 2, 3, 4, 9, 16, 21};[m
+[32m+[m[32m        int[] c = new int[a.length + b.length];[m
+[32m+[m
+[32m+[m[32m        merge(a, a.length, b, b.length, c);[m
+[32m+[m[32m    }[m
+ }[m
+[1mdiff --git a/src/chap06/MergeSort.java b/src/chap06/MergeSort.java[m
+[1mindex 572f1ec..2874cd9 100644[m
+[1m--- a/src/chap06/MergeSort.java[m
+[1m+++ b/src/chap06/MergeSort.java[m
+[36m@@ -1,2 +1,46 @@[m
+[31m-package chap06;public class MergeSort {[m
+[32m+[m[32mpackage chap06;[m
+[32m+[m
+[32m+[m[32mpublic class MergeSort {[m
+[32m+[m[32m    static int[] buff;[m
+[32m+[m
+[32m+[m[32m    static void __mergeSort(int[] a, int left, int right) {[m
+[32m+[m[32m        if (left < right) {[m
+[32m+[m[32m            int i;[m
+[32m+[m[32m            int center = (left + right) / 2;[m
+[32m+[m[32m            int p=0;[m
+[32m+[m[32m            int j=0;[m
+[32m+[m[32m            int k = left;[m
+[32m+[m
+[32m+[m[32m            __mergeSort(a, left, center);[m
+[32m+[m[32m            __mergeSort(a, center + 1, right);[m
+[32m+[m
+[32m+[m[32m            for (i = left; i <= center; i++) {[m
+[32m+[m[32m                buff[p++] = a[i];[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            while (i <= right && j < p) {[m
+[32m+[m[32m                a[k++] = (buff[j] <= a[i]) ? buff[j++] : a[i++];[m
+[32m+[m[32m            }[m
+[32m+[m
+[32m+[m[32m            while (j < p) {[m
+[32m+[m[32m                a[k++] = buff[j++];[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    static void mergeSort(int[] a, int n) {[m
+[32m+[m[32m        buff = new int[n];[m
+[32m+[m
+[32m+[m[32m        __mergeSort(a, 0, n - 1);[m
+[32m+[m
+[32m+[m[32m        buff = null;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m
+[32m+[m[32m    public static void main(String[] args) {[m
+[32m+[m[32m        int[] x = {22, 5, 11, 32, 120, 68, 70};[m
+[32m+[m[32m        int nx = x.length;[m
+[32m+[m
+[32m+[m[32m        mergeSort(x, nx);[m
+[32m+[m[32m    }[m
+ }[m
