@@ -38,7 +38,7 @@ public class QuickSort {
             x[i] = sc.nextInt();
         }
 
-        quickSort(x, 0, nx - 1);
+        quickSort(x, 0, nx - 1); // 배열 x의 퀵정렬
 
         System.out.println("오름차순으로 정렬했습니다.");
         for (int i = 0; i < nx; i++) {
