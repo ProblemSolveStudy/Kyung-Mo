@@ -15,7 +15,7 @@ public class QuickSort {
         int x = a[(pl + pr) / 2]; // 피벗 포인트
 
         do {
-            while (a[pl] < x) pl++;
+            while (a[pl] < x) pl++; // 왼쪽 커서먼저 돌자
             while (a[pr] > x) pr--;
             if (pl <= pr)
                 swap(a, pl++, pr--);
