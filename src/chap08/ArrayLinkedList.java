@@ -152,7 +152,7 @@ public class ArrayLinkedList<E> {
 
     public void clear() {
         while (head != NULL)
-            removeFirst();
+            removeFirst(); // 기존 메서드 활용
         crnt = NULL;
     }
 
