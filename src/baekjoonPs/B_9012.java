@@ -29,7 +29,7 @@ public class B_9012 {
         }
     }
 
-    public static String solve(String s) {
+    static String solve(String s) {
 
         Stack<Character> stack = new Stack<>();
 
@@ -40,7 +40,7 @@ public class B_9012 {
                 stack.push(c);
             } else if (stack.empty()) {
                 return "NO";
-            } else {
+            } else if (c == ')') {
                 stack.pop();
             }
         }
