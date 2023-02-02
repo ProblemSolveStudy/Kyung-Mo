@@ -1,6 +1,6 @@
 package baekjoonPs;
 
-import java.util.Scanner;
+import java.io.*;
 import java.util.Stack;
 
 
@@ -19,18 +19,18 @@ import java.util.Stack;
  */
 
 public class B_9012 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int T = sc.nextInt();
+
+        int T = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < T; i++) {
-            System.out.println(solve(sc.next()));
+            System.out.println(solve(br.readLine()));
         }
     }
 
     static String solve(String s) {
-
         Stack<Character> stack = new Stack<>();
 
         for (int i = 0; i < s.length(); i++) {
