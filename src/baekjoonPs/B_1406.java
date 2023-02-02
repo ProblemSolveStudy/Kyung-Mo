@@ -4,8 +4,6 @@ package baekjoonPs;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.ListIterator;
-import java.util.Scanner;
-import java.util.StringTokenizer;
 
 /***
  * 에디터 구현
@@ -26,84 +24,55 @@ import java.util.StringTokenizer;
  *
  * ##풀이과정
  * 커서의 위치는 현재 n번째 문자의 오른쪽인 n+1에 위치해야 함
- *
+ * 커서를 index로 사용하지 않고 Iterator 객체를 사용해서 쓰도록 할 것.
  */
 public class B_1406 {
-
-    static LinkedList<Character> ll;
-    static int cursor;
-
+    static LinkedList<Character> ll = new LinkedList<>();
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        StringBuilder sb = new StringBuilder(br.readLine());
+        String str = br.readLine();
         int M = Integer.parseInt(br.readLine());
 
-        ll = new LinkedList<>();
 
-        for (int i = 0; i < sb.length(); i++) {
-            ll.add(sb.charAt(i));
+        for (int i = 0; i < str.length(); i++) {
+            ll.add(str.charAt(i));
         }
 
-        ListIterator<Character> iter = ll.listIterator();
-
-        // 맨 처음 커서는 맨 뒤에 위치해야 하기 때문에 마지막으로 옮겨줄 코드
-        while (iter.hasNext()) {
-            iter.next();
+        ListIterator<Character> iterator = ll.listIterator();
+        while (iterator.hasNext()) {
+            iterator.next();
         }
-
-//        cursor = ll.size();
 
         for (int i = 0; i < M; i++) {
-            String str = br.readLine();
-            char c = str.charAt(0);
+            String command = br.readLine();
+            char c = command.charAt(0);
 
             switch (c) {
-                case 'P':
-                    char t = str.charAt(2);
-//                    ll.add(cursor, t);
-//                    cursor++;
-                    iter.add(t);
-                    break;
-
                 case 'L':
-//                    if (cursor == 0) {
-//                        break;
-//                    }
-//                    cursor--;
-                    if (iter.hasPrevious()) {
-                        iter.previous();
-                    }
+                    if(iterator.hasPrevious()) iterator.previous();
                     break;
 
                 case 'D':
-//                    if (cursor == ll.size()) {
-//                        break;
-//                    }
-//                    cursor++;
-                    if (iter.hasNext()) {
-                        iter.next();
-                    }
+                    if(iterator.hasNext()) iterator.next();
                     break;
 
                 case 'B':
-//                    if (cursor == 0 || cursor > ll.size()) {
-//                        break;
-//                    }
-//                    ll.remove(cursor - 1);
-//                    cursor--;
-
-                    if (iter.hasPrevious()) {
-                        iter.previous();
-                        iter.remove();
+                    if (iterator.hasPrevious()) {
+                        iterator.previous();
+                        iterator.remove();
                     }
+                    break;
+
+                case 'P':
+                    iterator.add(command.charAt(2));
                     break;
             }
         }
 
-        for (char s : ll) {
-            bw.write(s);
+        for (char c : ll) {
+            bw.write(c);
         }
         bw.flush();
         bw.close();
