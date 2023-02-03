@@ -12,6 +12,8 @@ public class BufferedReaderExercise {
 
         bw.write(s);
         bw.flush();
+        
+        // 잔디 테스트
 
     }
 }
