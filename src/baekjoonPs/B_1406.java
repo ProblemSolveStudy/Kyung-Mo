@@ -27,23 +27,26 @@ import java.util.ListIterator;
  * 커서를 index로 사용하지 않고 Iterator 객체를 사용해서 쓰도록 할 것.
  */
 public class B_1406 {
-    static LinkedList<Character> ll = new LinkedList<>();
+    static LinkedList<Character> ll;
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        String str = br.readLine();
-        int M = Integer.parseInt(br.readLine());
 
+        StringBuilder sb = new StringBuilder(br.readLine());
 
-        for (int i = 0; i < str.length(); i++) {
-            ll.add(str.charAt(i));
+        ll = new LinkedList<>();
+
+        for (int i = 0; i < sb.length(); i++) {
+            ll.add(sb.charAt(i));
         }
 
         ListIterator<Character> iterator = ll.listIterator();
+
         while (iterator.hasNext()) {
             iterator.next();
         }
+
+        int M = Integer.parseInt(br.readLine());
 
         for (int i = 0; i < M; i++) {
             String command = br.readLine();
@@ -51,11 +54,13 @@ public class B_1406 {
 
             switch (c) {
                 case 'L':
-                    if(iterator.hasPrevious()) iterator.previous();
-                    break;
+                   if(iterator.hasPrevious())
+                       iterator.previous();
+                   break;
 
                 case 'D':
-                    if(iterator.hasNext()) iterator.next();
+                    if(iterator.hasNext())
+                        iterator.next();
                     break;
 
                 case 'B':
@@ -74,7 +79,7 @@ public class B_1406 {
         for (char c : ll) {
             bw.write(c);
         }
+
         bw.flush();
-        bw.close();
     }
 }
