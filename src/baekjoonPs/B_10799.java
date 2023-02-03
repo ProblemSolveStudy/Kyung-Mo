@@ -8,27 +8,30 @@ public class B_10799 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        String s = br.readLine();
+        StringBuilder sb = new StringBuilder(br.readLine());
+
         Stack<Character> stack = new Stack<>();
 
         int result = 0;
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == '(') {
-                stack.push(s.charAt(i));
+
+        for (int i = 0; i < sb.length(); i++) {
+            char c = sb.charAt(i);
+
+            if (c == '(') {
+                stack.push(c);
                 continue;
             }
 
-            if (s.charAt(i) == ')') {
+            if (c == ')' && sb.charAt(i-1) == '(') {
                 stack.pop();
-
-                if (s.charAt(i - 1) == '(') {
-                    result += stack.size();
-                } else {
-                    result++;
-                }
+                result += stack.size();
+            } else if (c == ')' && sb.charAt(i-1) == ')') {
+                stack.pop();
+                result++;
             }
         }
-        bw.write(result + "\n");
+
+        bw.write(result);
         bw.flush();
     }
 }
