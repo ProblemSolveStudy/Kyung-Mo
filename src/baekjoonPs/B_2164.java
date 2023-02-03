@@ -22,7 +22,7 @@ public class B_2164 {
             queue.offer(down);
         }
 
-        System.out.println();
+        System.out.println(queue.peek());
 
 
     }
