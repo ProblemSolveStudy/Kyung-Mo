@@ -10,6 +10,8 @@ import java.util.Scanner;
  * top : 스택의 가장 위에 있는 정수를 출력함. 만약 스택에 들어가있는 정수가 없으면 -1 출력
  */
 
+// 커밋 테스트
+
 public class B_10828 {
     public static int[] stack;
     public static int size = 0;
